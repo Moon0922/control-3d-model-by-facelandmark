@@ -122,19 +122,23 @@ function App() {
           var left_eye_width = Math.sqrt((keyPoint[33].x - keyPoint[133].x) * (keyPoint[33].x - keyPoint[133].x) + (keyPoint[33].y - keyPoint[133].y) * (keyPoint[33].y - keyPoint[133].y));
           var left_eye_height =  Math.sqrt((keyPoint[159].x - keyPoint[145].x) * (keyPoint[159].x - keyPoint[145].x) + (keyPoint[159].y - keyPoint[145].y) * (keyPoint[159].y - keyPoint[145].y));
 
-          inf[0] = 1 - left_eye_height * 2 / left_eye_width;
-          if(inf[0] > 0.8)
-            inf[0] *= 1;
-          else if(inf[0] < 0.6)
-            inf[0] = -0.5;
+          inf[0] = left_eye_height / left_eye_width;
+          if(inf[0] < 0.23)
+            inf[0] = inf[0];
+          else if(inf[0] < 0.3)
+            inf[0] = 1 - inf[0] * 2;
+          else
+            inf[0] = 1 - inf[0] * 3;
           var right_eye_width = Math.sqrt((keyPoint[362].x - keyPoint[263].x) * (keyPoint[362].x - keyPoint[263].x) + (keyPoint[362].y - keyPoint[263].y) * (keyPoint[362].y - keyPoint[263].y));
           var right_eye_height =  Math.sqrt((keyPoint[386].x - keyPoint[374].x) * (keyPoint[386].x - keyPoint[374].x) + (keyPoint[386].y - keyPoint[374].y) * (keyPoint[386].y - keyPoint[374].y));
 
-          inf[1] = 1 - right_eye_height * 2 / right_eye_width;
-          if(inf[1] > 0.8)
+          inf[1] = right_eye_height / right_eye_width;
+          if(inf[1] < 0.23)
             inf[1] = 1;
-          else if(inf[1] < 0.6)
-            inf[1] = -0.5;
+          else if(inf[0] < 0.3)
+            inf[1] = 1 - inf[1] * 2;
+          else
+          	inf[1] = 1 - inf[1] * 3;
         }
       });
     };
