@@ -1,4 +1,4 @@
-# Control GLB model in real-time using face landmark detection
+# Control 3d model in real-time by face landmark detection
 
 ### Libraries:
 
